@@ -1,0 +1,53 @@
+<<echo=F, results=hide>>=
+pacman::p_load(char = c('patchwork', 'ggpubr', 'tidyverse'))
+data("USArrests")
+USArrests <- USArrests %>% rownames_to_column('State')
+mytheme <- function(){
+  theme_classic()+
+    theme(axis.text = element_text(size=14), axis.title = element_text(size=16))
+}
+@
+
+\begin{question}
+
+The following two graphs show the same relationship between murders and rapes per 100,000 residents in 1973 by state. Which representation is easier to digest?
+
+<<fig = T, width=15, height=12, echo=F, results=hide>>=
+p1 <- USArrests %>% ggplot(aes(Murder, Rape, color = State)) + 
+  geom_point(size = 2) + mytheme() + ggtitle('A')
+p2 <- USArrests %>% ggplot(aes(x = Murder, y = Rape)) + geom_label(aes(label = State)) + mytheme() + ggtitle('B')
+p3 <- USArrests %>% select(State, Murder, Rape) %>% gather(variable, value, -State) %>% 
+  ggplot(aes(x = State, y = value)) + geom_bar(aes(fill=variable), position='dodge', stat='identity') + theme_classic() + 
+  labs(y = 'Rate', fill = '') + coord_flip() + ggtitle('C"')
+p4 <- USArrests %>% select(State, Murder, Rape) %>% 
+  mutate(State = fct_reorder(State, Murder)) %>% gather(variable, value, -State) %>% 
+  ggplot(aes(x = State, y = value)) + geom_bar(aes(fill=variable), position='dodge', stat='identity') + theme_classic() + 
+  labs(fill = '', y = 'Rate') + coord_flip() + ggtitle('D')
+p1 / p2 / p3 / p4
+
+@
+
+<<echo=F, results=tex>>=
+qu = c('A','B','C','D')
+sol = c(F,T,F,F)
+answerlist(qu)
+@
+
+
+\end{question}
+
+\begin{solution}
+
+<<echo=F, results=tex>>=
+qu = c('A','B','C','D')
+sol = c(F,T,F,F)
+@
+
+\end{solution}
+
+
+%% META-INFORMATION
+%% \exname{best}
+%% \exsolution{\Sexpr{mchoice2string(sol)}}
+%% \extype{schoice}
+\end{}

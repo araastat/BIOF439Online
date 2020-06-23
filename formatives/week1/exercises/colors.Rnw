@@ -1,0 +1,31 @@
+\begin{question}
+
+Heatmaps are commonly used in bioinformatics to display differential expression across subjects and transcripts. 
+Heatmaps are often colored so that low values are one color, middle (neutral) values are a second color, and 
+high values are a third color. 
+
+\vspace{1cm}
+The following choices are given as low color - neutral color - high color. Which ones would you \textbf{not} choose
+for your heatmap?
+
+<<echo=F, results=tex>>=
+qu = c('green-black-red',
+       'green-white-red',
+       'yellow-black-green',
+       'orange-white-blue',
+       'orange-white-yellow')
+answerlist(qu)
+@
+
+\end{question}
+\begin{solution}
+<<echo=F, results=tex>>=
+sol = c(T, T, F, F, T)
+@
+
+\end{solution}
+
+%% META-INFORMATION
+%% \exname{colors}
+%% \extype{mchoice}
+%% \exsolution{\Sexpr{mchoice2string(sol)}}

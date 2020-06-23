@@ -1,0 +1,52 @@
+<<echo=FALSE, results=hide>>=
+pacman::p_load('tidyverse')
+pacman::p_load('patchwork')
+set.seed(200)
+mytheme <- function(){
+  theme_classic() + 
+    theme(axis.text.y = element_blank())
+}
+d = tibble(x = c(rnorm(200, 0, .5), rnorm(250, 8, 2)))
+plt0 <- ggplot(d, aes(x=x))+geom_histogram() + mytheme()
+plt1 <- ggplot(d, aes(x = 1,y = x))+geom_violin() + coord_flip() + mytheme()
+plt2 <- ggplot(d, aes(x)) + geom_boxplot() + mytheme()
+
+
+qu <- c('The smallest value is negative',
+        'Roughly half of the data points are below 5.5',
+        'The largest value is around 8',
+        'The data is distributed evenly between 0.5 and 8',
+        'The data is distrbuted evenly between -1 and 15')
+sol <- c(T, T, F, F, F)
+ex <- c('The plot extends below 0',
+        'The median (denoted by the line inside the box) is roughly at 8',
+        'The largest value is at the end of the right whisker, around 15',
+        "We can't say how the data is distributed from the boxplot",
+        "We can't say how the data is distributed from the boxplot")
+@
+
+\begin{question}
+
+<<fig=T, height=2, width=5, echo = F, results=hide>>=
+print(plt2)
+@
+
+
+<<echo=F, results=tex>>=
+answerlist(qu)
+@
+
+\end{question}
+
+\begin{solution}
+
+<<echo=F, results=tex>>=
+answerlist(ifelse(sol, 'True','False'), ex)
+@
+\end{solution}
+
+%% META-INFORMATION
+%% \extype{mchoice}
+%% \exsolution{\Sexpr{mchoice2string(sol)}}
+%% \exname{BW}
+

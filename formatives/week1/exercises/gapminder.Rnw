@@ -1,0 +1,59 @@
+<<echo=F, results=hide>>=
+library(ggplot2)
+data(diamonds)
+library(gapminder)
+mytheme = function(){
+  theme_classic() + 
+    theme(axis.text = element_text(size = 14), axis.title = element_text(size=16))
+}
+
+plt <- ggplot(gapminder, aes(x = year, y = lifeExp, color = country)) + geom_line(show.legend = F) + 
+  labs(x = 'Year', y = 'Life Expectancy (years)', title = "Life expectancy by country, 1952-2007", 
+       caption = 'gapminder.org/data') + 
+       mytheme()
+@
+
+
+\begin{question}
+
+The following graph shows the trends in life expectancy between 1952 and 1997. Each colored line represents 
+one of 142 countries. We have omitted the legend since it would take up too much real estate. 
+
+<<fig=T, echo=F, width=6, height=4, results=hide>>=
+plt
+@
+
+What are the different ways you might modify this plot to make it easier to understand, keeping it to 
+a single screen? Assume that you are displaying this on the web. You can choose multiple answers. This list is not exhaustive. You can make more suggestions on Slack (no extra credit, just extra thought). 
+
+<<echo=F, results=tex>>=
+qu <- c('Draw one panel per country',
+        'Create panels by continent, and then colored lines by country',
+        'Drop the colors',
+        'Make each line more transparent (this is usually called the alpha parameter in R)',
+        'Create a dynamic graph, with all the lines being colored. When you hover over a line with the mouse, it shows the country', 
+        'Create a dynamic graph, with all the lines being light grey. When you hover over a line with the mouse, it turns dark and shows the country',
+        'Create an animated graphic, where each country is represented by a circle that moves with time', 
+        'This is too complicated; lets just summarize by continent and show one line by continent',
+        'Create 4 panels based on quartiles of improvement in life expectancy, and make dynamic graphs in each panel, showing country when hovering over a line',
+        'Create a plot with country on x-axis, life expectancy on y-axis, and drawing a line for each country from its lowest to its highest life expectancy over this period, and putting countries in order of their lowest life expectancy',
+        "Don't do any plot. Provide a table")
+answerlist(qu)
+@
+        
+\end{question}
+
+\begin{solution}
+
+<<echo=F, results=tex>>=
+sol = c(F, F, F, F, F, T, T, F, F, T, T )
+@
+
+\end{solution}
+
+
+%% META-INFORMATION
+%% \exname{gapminder}
+%% \extype{mchoice}
+%% \exsolution{\Sexpr{mchoice2string(sol)}}
+
