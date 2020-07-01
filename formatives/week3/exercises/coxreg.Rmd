@@ -1,0 +1,42 @@
+Question
+========
+
+The Cox proportional hazards regression model is a very popular model to describe 
+survival or reliability data. The `pbc` data from the **survival** package will be used in this
+example.
+
+Write out the R code that will fit a Cox regression of survival time modeled on age, sex, cholesterol, albumin, 
+stage (as a factor), billirubin, and the interaction of sex with cholesterol. 
+
+
+
+```
+library(survival)
+coxph(Surv(time, status==2) ~ ____________, data = pbc)
+```
+
+To access the pbc dataset, you must first run `library(survival)`. This package in in-built, so
+you don't have to install it. You can find the variable names in the data set by typing `help(pbc)`, which
+will open the documentation for this dataset. I would like working R code, so please use the actual variable names
+in your answer
+
+Solution
+========
+
+```{r, echo = TRUE}
+library(survival)
+m1 <- coxph(Surv(time, status==2) ~ age + sex + chol + albumin + as.factor(stage) + 
+    bili + sex:chol, data = pbc)
+summary(m1)
+```
+
+```{r}
+broom::tidy(m1)
+```
+
+Meta-information
+================
+
+extype: string
+exname: coxreg
+exsolution: nil

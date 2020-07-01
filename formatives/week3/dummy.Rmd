@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "Abhijit Dasgupta"
+date: "7/1/2020"
+output: html_document
+---
+
+Run the following two commands after running `library(survival)`. 
+```{r, include=FALSE}
+library(survival)
+```
+
+```{r}
+summary(pbc$stage)
+```
+
+```{r}
+summary(as.factor(pbc$stage))
+```
+
+
+Since `stage` is the cancer stage of a person, which type should `stage` be for 
+analyses?
+
+

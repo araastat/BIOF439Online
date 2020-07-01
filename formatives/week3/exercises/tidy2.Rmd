@@ -1,0 +1,40 @@
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+
+
+Question
+========
+
+Consider the following data
+
+```{r, echo=FALSE}
+table1
+```
+
+Is this data tidy?
+
+Answerlist
+----------
+* TRUE
+* FALSE
+
+Solution
+========
+
+Answerlist
+----------
+* True
+* False
+
+
+Meta-information
+================
+extype: schoice
+exsolution: 1000
+exname: tidy2
+
+
+

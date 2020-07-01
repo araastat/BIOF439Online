@@ -9,7 +9,7 @@ mytheme <- function(){
 d = tibble(x = c(rnorm(200, 0, .5), rnorm(250, 8, 2)))
 plt0 <- ggplot(d, aes(x=x))+geom_histogram() + mytheme()
 plt1 <- ggplot(d, aes(x = 1,y = x))+geom_violin() + coord_flip() + mytheme()
-plt2 <- ggplot(d, aes(x)) + geom_boxplot() + mytheme()
+plt2 <- ggplot(d, aes(y = x)) + geom_boxplot() + mytheme()
 
 @
 

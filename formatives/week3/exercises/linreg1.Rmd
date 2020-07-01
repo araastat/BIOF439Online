@@ -1,0 +1,58 @@
+Question
+========
+
+
+```{r initial-regression, echo=FALSE, fig.width=4, fig.asp=0.8}
+library(tidyverse)
+set.seed(3958)
+D1 = tibble(x = rchisq(500, df=1)) %>% 
+  mutate(y = 2 - 3*x + 5*x^2 + rnorm(500,0,2))
+#write_csv(D1,  here::here('data/formative32_lm.csv'))
+D1 <- D1 %>% mutate(x2 = x^2)
+m1 = lm(y~x, data=D1)
+plt <- ggplot(broom::augment(m1))+geom_point(aes(x = x, y = y)) + 
+  geom_line(aes(x = x, y=.fitted), color='blue') + 
+  theme_classic()
+print(plt)
+```
+
+
+A data set imported and stored in the data.frame `D1` was used to fit a linear regression using the 
+following code:
+
+```{r, eval=FALSE}
+lm(y~x, data=D1)
+```
+
+and the resulting regression line is plotted in blue. Obviously it isn't a very good fit, since it doesn't capture
+the curvature in the x-y relationship well. 
+
+Suggest another linear regression model that might fit the data better, of the form
+
+```
+lm(y ~ x + ______, data = D1)
+```
+
+The data is available [here](https://www.dropbox.com/s/f3hvv5t88m2hu5e/formative32_lm.csv?dl=1)
+
+Solution
+========
+
+```{r final-regression, echo = TRUE}
+lm(y ~ x + I(x^2), data = D1)
+```
+
+```{r,  fig.width=4, fig.asp=0.8}
+m1 <- lm(y ~ x + I(x^2), data = D1)
+ggplot(broom::augment(m1)) + 
+  geom_point(aes(x = x, y = y)) + 
+  geom_line(aes(x = x, y=.fitted), color='blue') + 
+  theme_classic()
+```
+
+Meta-information
+================
+
+extype: string
+exname: linreg1
+exsolution: nil

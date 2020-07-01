@@ -1,0 +1,37 @@
+Question
+========
+
+Consider the `beaches` dataset. 
+
+If you want to transform the rainfall data into inches from centimeters, which `tidyverse` 
+function would you use?
+
+Answerlist
+----------
+
+* filter
+* mutate
+* arrange
+* select
+* group_by
+* summarise
+
+Solution
+=========
+
+Answerlist
+----------
+
+* False
+* True
+* False
+* False
+* False
+* False
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 10000
+exname: tidy3

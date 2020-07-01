@@ -1,0 +1,37 @@
+Question
+========
+
+Consider the `beaches` dataset. 
+
+If you want to find the average rainfall per year and season, what two tidyverse functions 
+would you use?
+
+
+Answerlist
+----------
+
+* filter & summarize
+* filter & arrange
+* group_by & summarize
+* mutate & summarize
+* group_by & mutate
+
+Solution
+=========
+
+Answerlist
+----------
+
+* False
+* False
+* True
+* False
+* False
+
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 10000
+exname: tidy5

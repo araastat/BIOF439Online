@@ -1,0 +1,146 @@
+---
+title: "Formative 1 (Week 2)"
+author: "Abhijit Dasgupta, PhD"
+output: 
+  html_document:
+    theme: cerulean
+    highlight: zenburn
+
+---
+
+```{r setup, include=F}
+library(pacman)
+p_load(char=c('knitr','kableExtra', 'here'))
+opts_chunk$set(message = F, warning = F)
+```
+
+Packages are user-produced compendiums of functions and data that extend the 
+functionality of R. Functions are like recipes, and so packages are like recipe
+books. You have to "load" or "activate" a package in R in order to use the functions
+inside the package. The standard R way of doing this is by using the `library` function
+(yes, it's a package, but you load it using *library*. I know, confusing). For 
+example, to load the `tidyverse` package, which is in fact a meta-package that pulls
+together 8 other packages (think of this as a boxed set of recipe books), we would
+write, in our script, 
+
+```{r, eval=F}
+library(tidyverse)
+```
+```{r, echo=T, eval=F}
+── Attaching packages ───────────────────────── tidyverse 1.3.0 ──
+✓ ggplot2 3.3.1     ✓ purrr   0.3.4
+✓ tibble  3.0.1     ✓ dplyr   1.0.0
+✓ tidyr   1.0.3     ✓ stringr 1.4.0
+✓ readr   1.3.1     ✓ forcats 0.5.0
+── Conflicts ──────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+```
+
+This output shows up the first time you run this command. You only need to load
+a package once **per session**. If you use it multiple times in a session, R just
+sees that it's already loaded and does nothing. 
+
+A description of the tidyverse packages is given below:
+
+```{r tidyverse, echo = F, results = 'asis', warning=F, message=F}
+library(glue)
+tidy_pkgs <- 
+  tibble('pkgs' = c('ggplot2','purrr','readr','tidyr',
+                    'dplyr','forcats','lubridate','stringr')) %>% 
+  mutate(
+    # version = map_chr(pkgs, ~packageDescription(., fields='Version')),
+    descr = map_chr(pkgs, ~packageDescription(., fields='Description')))
+
+glue_data(tidy_pkgs, 
+          "- [**{pkgs}**](http://{pkgs}.tidyverse.org): {descr}")
+
+```
+
+<hr/>
+
+Consider the following piece of code from the lecture
+
+```{r orig-pkg, eval=F}
+library(tidyverse)
+beaches <- read_csv('data/sydneybeaches3.csv')
+
+ggplot(data = beaches,
+       mapping = aes(
+         x = temperature,
+         y = rainfall
+       )
+) + 
+  geom_point()
+```
+
+## Question
+
+Instead of using the full `tidyverse` package, we can just load the packages we
+need for this code to run. 
+
+Fill in the blanks in the code below, then **restart R within RStudio** using 
+either the keyboard shortcut `Ctrl/Cmd + Shift + F10` or the menu item `Session > Restart R`. Then copy your code below and see if it produces the graph.
+
+```{r, eval=F}
+library(___)
+library(___)
+
+beaches <- read_csv('data/sydneybeaches3.csv')
+
+ggplot(data = beaches,
+       mapping = aes(
+         x = temperature,
+         y = rainfall
+       )
+) + 
+  geom_point()
+
+```
+
+## Question
+
+```{r readr, echo=F}
+include_graphics(here('graphs/readr.png'))
+```
+
+In the **Packages** panel in RStudio, search for the `readr` package. Click on the
+package name and it will take you to a list of functions in the package. Write down
+other functions that you might find useful in your work, separated by commas.
+
+## Question
+
+Another way of loading data into R that might be easier is the **rio** package, which 
+stands for *r import outpu*. Fill in the blanks to (a) install the **rio** package 
+on your computer, (b) "activate" the **rio** package, and then (c) use the `import` function from the **rio** package to load the data from the `sydneybeaches3.csv` file
+you can download from the course website.
+
+```{r, eval=F}
+install.packages("___")
+library(___)
+
+beaches <- ____("data/sydneybeaches3.csv")
+```
+
+## Question
+
+If you looked inside the `install.R` file that you used to install a bunch of 
+R packages to your computer, you noticed that I used the **pacman** package and the 
+`p_load` function in that file. The `p_load` function combines `install.packages` 
+(if needed) and the `library` function to activate a package in your session. This
+is great if I'm moving to a new computer or am sharing my code with someone else, 
+since it takes care of installing a package if it's not already installed. 
+
+You don't always have to load an entire package into R if you only need one function
+from it. R allows you to use a single function from a package using the 
+syntax `package::function` (note, two colons).
+
+Load the **mlbench** package into your session using the `p_load` function using the
+syntax above. (This package provides several datasets for machine learning). Check
+in RStudio's Packages panel to make sure it is installed (you may need to refresh the 
+window)
+
+```{r, eval=F}
+____::____(mlbench)
+```
+

@@ -1,0 +1,42 @@
+```{r, include=F}
+library(tidyverse)
+beaches <- read_csv('~/Dropbox/teaching/BIOF439/data/sydneybeaches3.csv')
+```
+
+
+
+Question
+========
+
+Consider the `beaches` dataset.
+
+I can compute the monthly average temperature for each month in 2015 in the data set by the
+following code:
+
+```{r}
+beaches_2015 <- filter(beaches, year==2015)
+grouped_month <- group_by(beaches_2015,  month)
+monthly_temp_averages <- summarise(grouped_month, mean(temperature))
+monthly_temp_averages
+```
+
+Write this code out in pipe form.
+
+Solution
+========
+
+```{r}
+beaches %>% 
+  filter(year == 2015) %>% 
+  group_by(month) %>% 
+  summarize(mean(temperature))
+  
+```
+
+
+Meta-information
+================
+
+extype: string
+exsolution: nil
+exname: pipe1

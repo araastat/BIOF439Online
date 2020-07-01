@@ -1,0 +1,37 @@
+Question
+========
+
+Consider the `beaches` dataset. 
+
+If you want to create a subset of this data including only date, temperature and rainfall,
+what tidyverse function would you use?
+
+Answerlist
+----------
+
+* filter
+* mutate
+* arrange
+* select
+* group_by
+* summarise
+
+Solution
+=========
+
+Answerlist
+----------
+
+* False
+* False
+* False
+* True
+* False
+* False
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 10000
+exname: tidy4
