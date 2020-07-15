@@ -1,0 +1,127 @@
+---
+title: Selecting columns
+author: Abhjit Dasgupta
+output: 
+    xaringan::moon_reader:
+        css: [default, './robot.css', './robot-fonts.css', './sfah.css']
+        #css: [default, metropolis, metropolis-fonts]
+        nature:
+            ratio: '16:9'
+            highlightLanguage: "r"
+            countIncrementalSlides: false
+            highlightStyle: "zenburn"
+            highlightLines: true
+            slideNumberFormat: "%current%"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+weather_data <- read_csv('~/Dropbox/teaching/BIOF439/data/weather.csv')
+weather1 <- weather_data %>% slice(1:3)
+```
+
+
+
+You can select columns by name or position, of course. 
+
+```{r}
+weather1 %>% select(year, element)
+```
+
+```{r}
+weather1 %>% select(2, 4, 5)
+```
+
+> `weather1` is just a data.frame with the first 3 rows of the weather dataset
+
+---
+
+You can select consecutive columns 
+
+```{r}
+weather1 %>% select(d1:d14)
+```
+```{r}
+weather1 %>% select(3:7)
+```
+
+---
+
+You can also select columns based on some criteria in the column names.
+
+
+```{r}
+weather1 %>% select(starts_with("d"))
+weather1 %>% select(ends_with('2')) 
+```
+
+> Whatever is in these selector functions `starts_with`, `ends_with`, etc., has to be quoted
+
+---
+
+You can select by column type
+
+```{r}
+weather1 %>% select(where(is.character))
+weather1 %>% select(!where(is.numeric)) # Not numeric
+```
+
+---
+
+There are several other options:
+
+```{r, eval=F}
+?tidyselect::language
+```
+
+.pull-left[
+
+`:` for selecting a range of consecutive variables.
+
+`!` for taking the complement of a set of variables.
+
+`&` and `|` for selecting the intersection or the union of two sets of variables.
+
+`c()` for combining selections.
+
+In addition, you can use selection helpers. Some helpers select specific columns:
+
+`everything()`: Matches all variables.
+
+`last_col()`: Select last variable, possibly with an offset.
+]
+
+.pull-right[
+These helpers select variables by matching patterns in their names:
+
+`starts_with()`: Starts with a prefix.
+
+`ends_with()`: Ends with a suffix.
+
+`contains()`: Contains a literal string.
+
+`matches()`: Matches a regular expression.
+
+`num_range()`: Matches a numerical range like x01, x02, x03.
+
+]
+
+---
+
+```{r, eval=F}
+?tidyselect::language
+```
+.pull-left[
+
+These helpers select variables from a character vector:
+
+`all_of()`: Matches variable names in a character vector. All names must be present, otherwise an out-of-bounds error is thrown.
+
+`any_of()`: Same as all_of(), except that no error is thrown for names that don't exist.
+
+This helper selects variables with a function:
+
+`where()`: Applies a function to all variables and selects those for which the function returns TRUE.
+
+
+]

@@ -19,6 +19,10 @@ Answerlist
 Solution
 =========
 
+```{r, eval=FALSE}
+beaches %>% select(date, temperature, rainfall)
+```
+
 Answerlist
 ----------
 

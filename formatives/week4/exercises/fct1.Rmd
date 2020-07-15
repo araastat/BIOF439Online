@@ -1,0 +1,41 @@
+Question
+========
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+ggplot(penguins, aes(x = fct_infreq(island)))+
+  geom_bar() +
+  labs(x = 'island')
+```
+
+
+What are the possible transformations of the factor `island` in this plot?
+
+Answerlist
+----------
+
+* `fct_relevel`
+* `fct_infreq`
+* `fct_count`
+* Nothing
+* `fct_recode`
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* TRUE
+* FALSE
+* TRUE
+* FALSE
+
+Meta-information
+================
+
+extype: mchoice
+exsolution: 01010
+exname: tidy4

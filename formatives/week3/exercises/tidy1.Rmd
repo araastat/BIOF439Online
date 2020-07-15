@@ -24,10 +24,13 @@ Answerlist
 Solution
 ========
 
+This data is not tidy since there are 2 pieces of information in the `rate` column
+
 Answerlist
 ----------
 * False
 * True
+
 
 Meta-information
 ================

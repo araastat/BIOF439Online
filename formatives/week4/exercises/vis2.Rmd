@@ -1,0 +1,47 @@
+Question
+========
+
+We will use the `beaches` data set.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=15}
+library(tidyverse)
+library(patchwork)
+
+beaches <- read_csv('~/Dropbox/teaching/BIOF439/data/sydneybeaches3.csv')
+
+p1 <- ggplot(beaches, aes(x = temperature))+
+  geom_histogram()
+p2 <- ggplot(beaches, aes(x=rainfall)) + geom_histogram()
+p3 <- ggplot(beaches, aes(x = enterococci)) + geom_histogram() + 
+  scale_x_log10() +
+  facet_wrap(~season_name, nrow = 1)
+
+((p1 + p2) / p3)
+```
+
+This plot was created with the R code `(p1 + p2) | p3`. Which package was used?
+
+Answerlist
+----------
+
+* ggpubr
+* cowplot
+* patchwork
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* FALSE
+* TRUE
+
+Meta-information
+================
+
+extype: schoice
+exname: vis2
+exsolution: 001
+

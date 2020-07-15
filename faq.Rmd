@@ -1,0 +1,20 @@
+---
+title: "Frequently Asked Questions
+author: "BIOF 439"
+output: 
+  html_document:
+    theme: cerulean
+    highlight: zenburn
+    toc: true
+    toc_float: true
+---
+
+# Software issues
+
+## Installation problems
+
+### I'm getting an odd error when trying to install a package
+
+1.    
+
+# R issues

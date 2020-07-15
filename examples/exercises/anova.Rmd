@@ -1,5 +1,6 @@
 ```{r data generation, echo = FALSE, results = "hide"}
 ## DATA GENERATION
+set.seed(204)
 n <- 9 + sample(1:6, 4)
 dat <- data.frame(Evaluation = rnorm(sum(n),
     mean = rep(sample(seq(from = sample(25:55, 1), by = 1, length.out = sample(15:20, 1)), 4)/10, n),

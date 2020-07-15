@@ -9,7 +9,7 @@ library("exams")
 
 ## to get an overview of the available exercises in this demo,
 ## switch to the "exercises" folder
-setwd("exercises")
+#setwd("exercises")
 dir()
 
 ## in the following the exercises in R/Markdown (.Rmd) format are discussed

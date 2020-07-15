@@ -19,6 +19,11 @@ Answerlist
 Solution
 =========
 
+```{r, eval=FALSE}
+beaches %>% mutate(rainfall = rainfall * 2.54)
+```
+
+
 Answerlist
 ----------
 

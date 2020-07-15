@@ -1,0 +1,40 @@
+Question
+========
+
+We will use the `beaches` data set. The following upset plot of missing values
+is produced.
+
+```{r upset-plot, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+beaches <- read_csv('~/Dropbox/teaching/BIOF439/data/sydneybeaches3.csv')
+library(naniar)
+gg_miss_upset(beaches)
+```
+
+How many observations have missing values in more than one variable?
+
+Answerlist
+----------
+
+* 2
+* 3
+* 1
+* 0
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* FALSE
+* FALSE
+* TRUE
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 0001
+exname: vis1

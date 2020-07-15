@@ -1,0 +1,29 @@
+Question
+========
+
+I want to add a plot created using ggplot to a Word document. Which 
+command would I use after creating the plot.
+
+Answerlist
+----------
+
+* `ggsave(file = 'fig1.png', width=4, height=4, dpi = 72)`
+* `ggsave(file = 'fig1.pdf', width=4, height=4)`
+* `ggsave(file = 'fig1.png', width=4, height=4, res=600)`
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* FALSE
+* TRUE
+
+Meta-information
+================
+
+exname: vis3
+extype: schoice
+exsolution: 001

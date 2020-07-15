@@ -6,6 +6,6 @@
 
 *.zip
 *.png
-*.html
 *.key
 data/*
+formatives/**/*html

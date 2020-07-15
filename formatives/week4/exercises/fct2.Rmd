@@ -1,0 +1,42 @@
+Question
+========
+
+We can create this plot from the beaches dataset.
+
+```{r boxplot, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+beaches <- read_csv('~/Dropbox/teaching/BIOF439/data/sydneybeaches3.csv')
+ggplot(beaches, aes(x = fct_reorder(season_name, temperature),
+                    y = temperature))+
+  geom_boxplot() + 
+  labs(x = 'Season',
+       y = 'Temperature (C)') +
+  theme_classic()
+```
+
+Which of the following transformations for the categorical variable for season would **not** result in this plot.
+
+Answerlist
+----------
+
+* `fct_relevel(season_name, 'Winter','Spring','Autumn', 'Summer')`
+* `fct_reorder(season_name, temperature)`
+* `fct_infreq(season_name)`
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* FALSE
+* TRUE
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 001
+exname: fct2
+

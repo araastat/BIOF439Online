@@ -19,6 +19,12 @@ Answerlist
 Solution
 =========
 
+```{r, eval = FALSE}
+beaches %>% 
+  group_by(year, season_name) %>% 
+  summarize(mean_rainfall = mean(rainfall))
+```
+
 Answerlist
 ----------
 
