@@ -1,0 +1,43 @@
+Question
+========
+
+```{r upset, echo=FALSE, fig.width=6, message=FALSE, fig.cap=''}
+library(UpSetR)
+movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=TRUE, sep=";" )
+
+upset(movies, nsets = 7, nintersects = 30, mb.ratio = c(0.5, 0.5),
+      order.by = c("freq", "degree"), decreasing = c(TRUE,FALSE))
+```     
+
+
+This upset plot uses a movie database to look at movies by 
+several categories. 
+
+
+Which of the following combinations of categories have no movies in the database?
+
+Answerlist
+----------
+
+* Comedy & Horror
+* Adventure & Comedy
+* Adventure & Horror
+
+Solution
+========
+
+Answerlist
+----------
+
+* FALSE
+* FALSE
+* TRUE
+
+Meta-information
+================
+
+extype: schoice
+exsolution: 001
+exname: upset2
+
+

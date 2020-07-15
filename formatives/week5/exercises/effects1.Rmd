@@ -1,0 +1,72 @@
+```{r, echo=FALSE, results='hide'}
+library(survival)
+suppressPackageStartupMessages(library(tidyverse))
+data(pbc)
+library(broom)
+
+m_cox <- veteran %>% 
+  mutate(across(c(trt, celltype, prior), as.factor))%>% 
+  coxph(Surv(time, status) ~ trt+age+karno+diagtime+prior, data=.)
+fctrs <- m_cox$xlevels
+out = tidy(m_cox, exponentiate = TRUE, conf.int = TRUE) %>% 
+  mutate(ci = as.character(glue::glue('({round(conf.low, 4)},{round(conf.high,4)})')))
+
+for(n in names(fctrs)){
+  out <- out %>% mutate(term = str_replace(term, n, paste0(n, ' = ')))
+}
+out <- out %>% mutate(term = fct_rev(fct_inorder(term))) %>% 
+  mutate(signif=ifelse(p.value <=0.05,'yes','no'))
+
+plt <- ggplot(out, 
+               aes(x = term, y = estimate, 
+                   ymin = conf.low, ymax = conf.high))+
+    geom_pointrange() + 
+    geom_hline(yintercept = 1, linetype = 2)+
+    theme_classic()+
+    scale_color_manual('Significant?', values = c('yes'='red', 'no'='black'))+
+    coord_flip()+
+    labs(y = 'Hazard ratio', title='Cox regression results', caption='VA Lung Cancer study')
+plt2 = ggplot(out, aes(x = term, y = 1, label = ci))+geom_text()+theme_void() + coord_flip()
+```
+
+Question
+========
+
+The following plot shows the results from a Cox proportional 
+hazards regression of the Stanford Heart Transplant data. There are four predictors: age, year of the transplant, prior surgery (yes = 1, no = 0) and prior transplant (yes = 1, now = 0). The 95% confidence intervals are plotted for each hazard ratio. 
+
+```{r, echo=FALSE, results = 'hide', fig.cap='', fig.width=6}
+plt
+```
+
+Which of the predictors are statistically signficant?
+
+> For those who don't know the duality of confidence intervals and p-values, in most cases,  significance at the 0.05 level is equivalent to the 95% confidence interval **not** covering the reference value.
+
+Answerlist
+----------
+
+* trt
+* age
+* karno
+* diagtime
+* prior
+
+
+Solution
+=========
+
+Answerlist
+-----------
+
+* FALSE. The confidence interval covers the reference value 1
+* TRUE. The confidence interval doesn't cover the reference value 1
+* FALSE. The confidence interval covers the reference value 1
+* FALSE. The confidence interval covers the reference value 1
+* FALSE. The confidence interval covers the reference value 1
+
+Meta-information
+================
+extype: mchoice
+exsolution: 01000
+exname: eff1

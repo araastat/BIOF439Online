@@ -27,7 +27,7 @@ Solution
 Answerlist
 ----------
 
-* FALSE
+* TRUE
 * TRUE
 * FALSE
 * TRUE
@@ -37,5 +37,5 @@ Meta-information
 ================
 
 extype: mchoice
-exsolution: 01010
+exsolution: 11010
 exname: tidy4

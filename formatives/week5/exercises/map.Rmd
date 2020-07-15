@@ -1,0 +1,37 @@
+```{r, echo=F, results='hide'}
+library(ggplot2)
+library(RColorBrewer)
+library(cowplot)
+library(sf)
+
+plt <- ggplot(world) + 
+geom_sf(aes(fill = log(gdpPercap)), show.legend = FALSE)+
+  theme_minimal()
+
+plt1=plt +scale_fill_distiller(type='seq', palette=2,direction = 1)
+plt2=plt +scale_fill_distiller(type='div', direction = 1)
+plt3=plt +scale_fill_distiller(type='qual', direction = 1)
+
+
+```
+
+Question
+========
+
+```{r, echo=F, results='hide', fig.cap='', fig.height=6, fig.width=8}
+plot_grid(plt1,plt2,plt3, labels=c('A','B','C'))
+```
+
+These are three representations mapping per capita GDP of the countries of the world. Which one best separates the low, middle and high income countries visually?
+
+Solution
+========
+
+B does, because it uses a diverging palette, where the middle income countries are light, and both low and high income countries can be seen in darker shades.
+
+Meta-information
+================
+
+extype: string
+exname: map
+exsolution: ''

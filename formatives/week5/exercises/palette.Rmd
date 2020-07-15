@@ -1,0 +1,65 @@
+```{r, echo=F, results='hide'}
+library(ggplot2)
+library(RColorBrewer)
+library(cowplot)
+
+mytheme = theme_minimal()+
+  theme(axis.title.y= element_text(angle=0, vjust=0.5),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())
+
+d = tibble(x=factor(1:7), y=1)
+plt1 <- ggplot(d, aes(x=x, y=y, fill=x))+
+  geom_tile(width=0.5, height=0.5, show.legend = FALSE)+
+  scale_fill_brewer(type='seq')+
+  labs(x='', y = 'Sequential')+
+  mytheme
+
+plt2 <- ggplot(d, aes(x=x, y=y, fill=x))+
+  geom_tile(width=0.5, height=0.5, show.legend = FALSE)+
+  scale_fill_brewer(type='div')+
+  labs(x='', y = 'Diverging')+
+  mytheme
+
+plt3 = ggplot(d, aes(x=x, y=y, fill=x))+
+  geom_tile(width=0.5, height=0.5, show.legend = FALSE)+
+  scale_fill_brewer(type='qual')+
+  labs(x='', y = 'Qualitative')+
+  mytheme
+```
+
+Question
+========
+
+The package **RColorBrewer** provides three types of color palettes
+
+```{r, echo=F, fig.cap='', fig.height=2}
+plot_grid(plt1, plt2, plt3, ncol=1, align='v')
+```
+
+Which type of palette would be most appropriate for a heatmap looking at over- and under-expression of genes in a sample relative to a control?
+
+Answerlist
+----------
+
+* Sequential
+* Diverging
+* Qualitative
+
+Solution
+=========
+
+Answerlist
+----------
+
+* FALSE. We want to see expressions that are too big and too small compared to the middle (no change). This palette would emphasize the over-expressed genes and hide the under-expressed genes
+* TRUE
+* FALSE. There is no ordering to this palette, and so it would visually not be clear which direction is which, and how the degree of over- or under-expression changed in each direction
+
+Meta-information
+================
+
+exname: palette
+extype: mchoice
+exsolution: 010
